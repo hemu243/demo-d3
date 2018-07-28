@@ -6,11 +6,6 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
-	  <!-- for range bar
-    <link rel="stylesheet" type="text/css" media="all" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Acme">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
     <script src="js/createChartFuncs.js"></script>
     <meta charset="UTF-8">
   </head>
@@ -26,19 +21,19 @@
       <script type="text/javascript">
         /*Start on 1915 because prior too few movies are listed to make them a fair
         comparison to modern times*/
-        var start_year = 1915;
+        var sYear = 1915;
         /*End on 2013 due to a strange dive towards zero in 2014 and 2015 I cannot explain or
         guarantee is not due to flawed data. At first I included the dip but received feedback it
         is best to remove it to avoid confusion, and then removed it.*/
-        var end_year = 2013;
+        var eYear = 2013;
         //Get from localhost, perhaps change to github later
-        var data_source = "data/yearly_data.tsv";
+        var dataSource = "data/yearly_data.tsv";
         var name = "IMDB Yearly Movie And Genre Counts (1915-2013)";
         createGenreChart("#genreChartContainer",
-                        data_source,
+                        dataSource,
                         name,
-                        start_year,
-                        end_year);
+                        sYear,
+                        eYear);
       </script>
     </div>
 
