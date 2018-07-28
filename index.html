@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="css/style.css">
 	  <!-- Bootstrap for some additional components (toggle swtich) -->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
     <script src="js/createChartFuncs.js"></script>
     <meta charset="UTF-8">
   </head>
@@ -27,7 +27,7 @@
         is best to remove it to avoid confusion, and then removed it.*/
         var eYear = 2013;
         //Get from localhost, perhaps change to github later
-        var dataSource = "http://localhost:8000/data/yearly_data.tsv";
+        var dataSource = "/data/yearly_data.tsv";
         var name = "IMDB Yearly Movie And Genre Counts (1915-2013)";
         createGenreChart("#genreChartContainer",
                         dataSource,
