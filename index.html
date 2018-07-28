@@ -6,52 +6,75 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+
+    <!-- Using full page.js for slides show-->
+    <link rel="stylesheet" type="text/css" href="fullpage.css" />
+    <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "easeInOutCubic". -->
+    <script src="vendors/easings.min.js"></script>
+    <!-- This following line is only necessary in the case of using the option `scrollOverflow:true` -->
+    <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
+    <script type="text/javascript" src="fullpage.js"></script>
+
     <script src="js/createChartFuncs.js"></script>
     <meta charset="UTF-8">
   </head>
   <body>
-  <h1 align="center">Movies Statistics</h1>
-  <div class="exposition">
-      In this project, we are exploring movies data base from IMDB and Rotten tomato. There are a lot of factors to consider, such as the director, the actors, and the movie’s budget so on.
-      We will explore few data set in this project.
-      IMDB data collected from <a href="https://www.imdb.com/interfaces/">IMBD interfaces</a>. The data is minimally cleaned up by filtering for movies that have at least one vote and associated length information, and info on TV episodes or shows is also not included, but the data is otherwise directly (after parsing) from IMDB. The legend is interactive (try clicking the rectangles!).
-      <br><br> <br>
+  <div id="fullpage">
+	<div class="section active">Introduction</div>
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
   </div>
-    <div id="genreChartContainer" class="chartContainer">
-      <script type="text/javascript">
-        /*Start on 1915 because prior too few movies are listed to make them a fair
-        comparison to modern times*/
-        var sYear = 1915;
-        /*End on 2013 due to a strange dive towards zero in 2014 and 2015 I cannot explain or
-        guarantee is not due to flawed data. At first I included the dip but received feedback it
-        is best to remove it to avoid confusion, and then removed it.*/
-        var eYear = 2013;
-        //Get from localhost, perhaps change to github later
-        var dataSource = "https://hemu243.github.io/d3-projects/data/yearly_data.tsv";
-        var name = "IMDB Yearly Movie And Genre Counts (1915-2013)";
-        createGenreChart("#genreChartContainer",
-                        dataSource,
-                        name,
-                        sYear,
-                        eYear);
-      </script>
-    </div>
+  new fullpage('#fullpage', {
+	//options here
+	autoScrolling:true,
+	scrollHorizontally: true
+});
 
-    <form class="form" id="genreToggleForm">
-      <div class="switch-field">
-          <div class="switch-title">Display Type</div>
-        <input type="radio" id="switch_left" name="switch" value="yes" checked/>
-        <label for="switch_left">Counts</label>
-        <input type="radio" id="switch_right" name="switch" value="no" />
-        <label for="switch_right">Percents</label>
-      </div>
-    </form>
-  <div class="exposition">
-As you can see this chart visualizes the number of genre movie releases between 1915 and 2013, as well as the total number of movies in those years.
-A single movie may be associated with zero, one, or multiple genres and so the 'Total Movies' line corresponds to actual
-movie counts and every colored-in area represents the number of movies tagged with that genre for that year.
-The clear conclusion is that there has been an explosion in film production from the 90s onward, for which I have some theories but no definitive explanation. Beyond the big takeaway there are a multitude of possible smaller conclusions regarding the relative popularity of genres and movies overall, which was really my intent in making such an open-ended visualization.
-        <br><br>
-    </div>
+//methods
+fullpage_api.setAllowScrolling(false);
+  <!--<h1 align="center">Movies Statistics</h1>-->
+  <!--<div class="exposition">-->
+      <!--In this project, we are exploring movies data base from IMDB and Rotten tomato. There are a lot of factors to consider, such as the director, the actors, and the movie’s budget so on.-->
+      <!--We will explore few data set in this project.-->
+      <!--IMDB data collected from <a href="https://www.imdb.com/interfaces/">IMBD interfaces</a>. The data is minimally cleaned up by filtering for movies that have at least one vote and associated length information, and info on TV episodes or shows is also not included, but the data is otherwise directly (after parsing) from IMDB. The legend is interactive (try clicking the rectangles!).-->
+      <!--<br><br> <br>-->
+  <!--</div>-->
+    <!--<div id="genreChartContainer" class="chartContainer">-->
+      <!--<script type="text/javascript">-->
+        <!--/*Start on 1915 because prior too few movies are listed to make them a fair-->
+        <!--comparison to modern times*/-->
+        <!--var sYear = 1915;-->
+        <!--/*End on 2013 due to a strange dive towards zero in 2014 and 2015 I cannot explain or-->
+        <!--guarantee is not due to flawed data. At first I included the dip but received feedback it-->
+        <!--is best to remove it to avoid confusion, and then removed it.*/-->
+        <!--var eYear = 2013;-->
+        <!--//Get from localhost, perhaps change to github later-->
+        <!--var dataSource = "https://hemu243.github.io/d3-projects/data/yearly_data.tsv";-->
+        <!--var name = "IMDB Yearly Movie And Genre Counts (1915-2013)";-->
+        <!--createGenreChart("#genreChartContainer",-->
+                        <!--dataSource,-->
+                        <!--name,-->
+                        <!--sYear,-->
+                        <!--eYear);-->
+      <!--</script>-->
+    <!--</div>-->
+
+    <!--<form class="form" id="genreToggleForm">-->
+      <!--<div class="switch-field">-->
+          <!--<div class="switch-title">Display Type</div>-->
+        <!--<input type="radio" id="switch_left" name="switch" value="yes" checked/>-->
+        <!--<label for="switch_left">Counts</label>-->
+        <!--<input type="radio" id="switch_right" name="switch" value="no" />-->
+        <!--<label for="switch_right">Percents</label>-->
+      <!--</div>-->
+    <!--</form>-->
+  <!--<div class="exposition">-->
+<!--As you can see this chart visualizes the number of genre movie releases between 1915 and 2013, as well as the total number of movies in those years.-->
+<!--A single movie may be associated with zero, one, or multiple genres and so the 'Total Movies' line corresponds to actual-->
+<!--movie counts and every colored-in area represents the number of movies tagged with that genre for that year.-->
+<!--The clear conclusion is that there has been an explosion in film production from the 90s onward, for which I have some theories but no definitive explanation. Beyond the big takeaway there are a multitude of possible smaller conclusions regarding the relative popularity of genres and movies overall, which was really my intent in making such an open-ended visualization.-->
+        <!--<br><br>-->
+    <!--</div>-->
   </body>
 </html>
