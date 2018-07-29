@@ -220,7 +220,7 @@ var createGenreChart = function(container,data_source,chart_name, start_year,end
     var genres = ["Action","Animation","Comedy","Drama","Documentary","Romance"];
     //Insert SVG before the toggle switch, make it fill container
     var genre_svg = dimple.newSvg(container, "100%", "100%");
-    var legend_title = "Legend:";
+    var legend_title = "";
     d3.tsv(data_source, function (year_data) {
       console.log(year_data)
       //filter out certain year ranges; explain at top
