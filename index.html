@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <link rel="stylesheet" href="css/style.css">
-	  <!-- Bootstrap for some additional components (toggle swtich) -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Bootstrap for some additional components (toggle swtich) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
 
     <!-- Using full page.js for slides show-->
-    <link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="css/fullpage.css"/>
     <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "easeInOutCubic". -->
     <script src="vendors/easings.min.js"></script>
     <!-- This following line is only necessary in the case of using the option `scrollOverflow:true` -->
@@ -17,64 +18,200 @@
 
     <script src="js/createChartFuncs.js"></script>
     <meta charset="UTF-8">
-  </head>
-  <body>
-  <div id="fullpage">
-	<div class="section active">Introduction</div>
-	<div class="section">Some section</div>
-	<div class="section">Some section</div>
-	<div class="section">Some section</div>
-  </div>
-  new fullpage('#fullpage', {
-	//options here
-	autoScrolling:true,
-	scrollHorizontally: true
-});
+</head>
+<body>
+    <!--<div id="fullpage" style='background-image: url("img/mv1.jpeg"); background-repeat: "no-repeat";background-size: 100%;'>-->
+    <div id="fullpage">
+        <div class="section" id="about">
+            <h1 align="center">About</h1>
+            <div class="exposition">
+                        In this project, we are exploring movies data base from IMDB and Rotten tomato. There are a lot of factors to consider, such as the director, the actors, and the movie’s budget so on.
+                        We will explore few data set in this project.
+                        IMDB data collected from <a href="https://www.imdb.com/interfaces/">IMBD interfaces</a>. The data is minimally cleaned up by filtering for movies that have at least one vote and associated length information, and info on TV episodes or shows is also not included, but the data is otherwise directly (after parsing) from IMDB.
+                        <br><br> <br>
+                    </div>
+            </div>
+        <div class="section" id="imdb">
+            <h1 align="center">IMDB Yearly Movie And Genre Counts (1915-2013)</h1>
+             <div class="exposition">
+                    As you can see this chart visualizes the number of genre movie releases between 1915 and 2013, as well as the total number of movies in those years.
+                    A single movie may be associated with zero, one, or multiple genres and so the 'Total Movies' line corresponds to actual
+                    movie counts and every colored-in area represents the number of movies tagged with that genre for that year.
+                    The clear conclusion is that there has been an explosion in film production from the 90s onward, for which I have some theories but no definitive explanation. Beyond the big takeaway there are a multitude of possible smaller conclusions regarding the relative popularity of genres and movies overall, which was really my intent in making such an open-ended visualization.
+                    <br><br>
+                 The legend is interactive (try clicking the rectangles!)
+                 <br>
+             </div>
+            <div>
+                <form class="form" id="genreToggleForm">
+                        <div class="switch-field">
+                            <div class="switch-title">Display Type</div>
+                            <input type="radio" id="switch_left" name="switch" value="yes" checked/>
+                            <label for="switch_left">Counts</label>
+                            <input type="radio" id="switch_right" name="switch" value="no" />
+                            <label for="switch_right">Percents</label>
+                        </div>
+                 </form>
+            </div>
+            <div id="genreChartContainer" class="chartContainer">
+                <script type="text/javascript">
+                    /*Start on 1915 because prior too few movies are listed to make them a fair
+                    comparison to modern times*/
+                    var sYear = 1915;
+                    /*End on 2013 due to a strange dive towards zero in 2014 and 2015 I cannot explain or
+                    guarantee is not due to flawed data. At first I included the dip but received feedback it
+                    is best to remove it to avoid confusion, and then removed it.*/
+                    var eYear = 2013;
+                    //Get from localhost, perhaps change to github later
+                    var dataSource = "https://hemu243.github.io/d3-projects/data/yearly_data.tsv";
+                    var name = "IMDB Yearly Movie And Genre Counts (1915-2013)";
+                    createGenreChart("#genreChartContainer",
+                        dataSource,
+                        name,
+                        sYear,
+                        eYear);
+                </script>
+            </div>
+            <br><br><br>
+        </div>
+        <div class="section" id="rottenimdb">
+            <h1 align="center">IMDB And Rotten Tomato Comparison</h1>
+            <div id="bubblechart"></div>
+        </div>
+        <div class="section" id="con"><h1 align="center">Conclusion</h1></div>
+    </div>
+    <!--<ul id="menu">-->
+        <!--<li data-menuanchor="Introduction"><a href="#about">Introduction</a></li>-->
+        <!--<li data-menuanchor="imdb"><a href="#imdb">IMDB</a></li>-->
+        <!--<li data-menuanchor="RottenImdb"><a href="#rottenimdb">Comparision</a></li>-->
+        <!--<li data-menuanchor="Conclusion"><a href="#con">Conclusion</a></li>-->
+    <!--</ul>-->
+    <script>
+        new fullpage('#fullpage', {
+            //options here
+            autoScrolling: false,
+            scrollHorizontally: true,
+            navigation: true,
+            verticalCentered: false,
 
-//methods
-fullpage_api.setAllowScrolling(false);
-  <!--<h1 align="center">Movies Statistics</h1>-->
-  <!--<div class="exposition">-->
-      <!--In this project, we are exploring movies data base from IMDB and Rotten tomato. There are a lot of factors to consider, such as the director, the actors, and the movie’s budget so on.-->
-      <!--We will explore few data set in this project.-->
-      <!--IMDB data collected from <a href="https://www.imdb.com/interfaces/">IMBD interfaces</a>. The data is minimally cleaned up by filtering for movies that have at least one vote and associated length information, and info on TV episodes or shows is also not included, but the data is otherwise directly (after parsing) from IMDB. The legend is interactive (try clicking the rectangles!).-->
-      <!--<br><br> <br>-->
-  <!--</div>-->
+            //Navigation
+            // menu: '#menu',
+            // lockAnchors: false,
+            // anchors:['firstPage', 'secondPage'],
+            // navigation: false,
+            // navigationPosition: 'right',
+            // navigationTooltips: ['firstSlide', 'secondSlide'],
+            // showActiveTooltip: false,
+            // slidesNavigation: false,
+            // slidesNavPosition: 'bottom',
+            //
+            // //Scrolling
+            // css3: true,
+            // scrollingSpeed: 700,
+            // autoScrolling: true,
+            // fitToSection: true,
+            // fitToSectionDelay: 1000,
+            // scrollBar: false,
+            // easing: 'easeInOutCubic',
+            // easingcss3: 'ease',
+            // loopBottom: false,
+            // loopTop: false,
+            // loopHorizontal: true,
+            // continuousVertical: false,
+            // continuousHorizontal: false,
+            // scrollHorizontally: false,
+            // interlockedSlides: false,
+            // dragAndMove: false,
+            // offsetSections: false,
+            // resetSliders: false,
+            // fadingEffect: false,
+            // normalScrollElements: '#element1, .element2',
+            // scrollOverflow: false,
+            // scrollOverflowReset: false,
+            // scrollOverflowOptions: null,
+            // touchSensitivity: 15,
+            // normalScrollElementTouchThreshold: 5,
+            // bigSectionsDestination: null,
+            //
+            // //Accessibility
+            // keyboardScrolling: true,
+            // animateAnchor: true,
+            // recordHistory: true,
+            //
+            // //Design
+            // controlArrows: true,
+            // verticalCentered: true,
+            // sectionsColor : ['#ccc', '#fff'],
+            // paddingTop: '3em',
+            // paddingBottom: '10px',
+            // fixedElements: '#header, .footer',
+            // responsiveWidth: 0,
+            // responsiveHeight: 0,
+            // responsiveSlides: false,
+            // parallax: false,
+            // parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+            //
+            // //Custom selectors
+            // sectionSelector: '.section',
+            // slideSelector: '.slide',
+            //
+            // lazyLoading: true,
+            //
+            // //events
+            // onLeave: function(origin, destination, direction){},
+            // afterLoad: function(origin, destination, direction){},
+            // afterRender: function(){},
+            // afterResize: function(width, height){},
+            // afterResponsive: function(isResponsive){},
+            // afterSlideLoad: function(section, origin, destination, direction){},
+            // onSlideLeave: function(section, origin, destination, direction){}
+        });
+
+        //methods
+        fullpage_api.setAllowScrolling(false);
+    </script>
+    <!--<h1 align="center">Movies Statistics</h1>-->
+    <!--<div class="exposition">-->
+    <!--In this project, we are exploring movies data base from IMDB and Rotten tomato. There are a lot of factors to consider, such as the director, the actors, and the movie’s budget so on.-->
+    <!--We will explore few data set in this project.-->
+    <!--IMDB data collected from <a href="https://www.imdb.com/interfaces/">IMBD interfaces</a>. The data is minimally cleaned up by filtering for movies that have at least one vote and associated length information, and info on TV episodes or shows is also not included, but the data is otherwise directly (after parsing) from IMDB. The legend is interactive (try clicking the rectangles!).-->
+    <!--<br><br> <br>-->
+    <!--</div>-->
     <!--<div id="genreChartContainer" class="chartContainer">-->
-      <!--<script type="text/javascript">-->
-        <!--/*Start on 1915 because prior too few movies are listed to make them a fair-->
-        <!--comparison to modern times*/-->
-        <!--var sYear = 1915;-->
-        <!--/*End on 2013 due to a strange dive towards zero in 2014 and 2015 I cannot explain or-->
-        <!--guarantee is not due to flawed data. At first I included the dip but received feedback it-->
-        <!--is best to remove it to avoid confusion, and then removed it.*/-->
-        <!--var eYear = 2013;-->
-        <!--//Get from localhost, perhaps change to github later-->
-        <!--var dataSource = "https://hemu243.github.io/d3-projects/data/yearly_data.tsv";-->
-        <!--var name = "IMDB Yearly Movie And Genre Counts (1915-2013)";-->
-        <!--createGenreChart("#genreChartContainer",-->
-                        <!--dataSource,-->
-                        <!--name,-->
-                        <!--sYear,-->
-                        <!--eYear);-->
-      <!--</script>-->
+    <!--<script type="text/javascript">-->
+    <!--/*Start on 1915 because prior too few movies are listed to make them a fair-->
+    <!--comparison to modern times*/-->
+    <!--var sYear = 1915;-->
+    <!--/*End on 2013 due to a strange dive towards zero in 2014 and 2015 I cannot explain or-->
+    <!--guarantee is not due to flawed data. At first I included the dip but received feedback it-->
+    <!--is best to remove it to avoid confusion, and then removed it.*/-->
+    <!--var eYear = 2013;-->
+    <!--//Get from localhost, perhaps change to github later-->
+    <!--var dataSource = "https://hemu243.github.io/d3-projects/data/yearly_data.tsv";-->
+    <!--var name = "IMDB Yearly Movie And Genre Counts (1915-2013)";-->
+    <!--createGenreChart("#genreChartContainer",-->
+    <!--dataSource,-->
+    <!--name,-->
+    <!--sYear,-->
+    <!--eYear);-->
+    <!--</script>-->
     <!--</div>-->
 
     <!--<form class="form" id="genreToggleForm">-->
-      <!--<div class="switch-field">-->
-          <!--<div class="switch-title">Display Type</div>-->
-        <!--<input type="radio" id="switch_left" name="switch" value="yes" checked/>-->
-        <!--<label for="switch_left">Counts</label>-->
-        <!--<input type="radio" id="switch_right" name="switch" value="no" />-->
-        <!--<label for="switch_right">Percents</label>-->
-      <!--</div>-->
-    <!--</form>-->
-  <!--<div class="exposition">-->
-<!--As you can see this chart visualizes the number of genre movie releases between 1915 and 2013, as well as the total number of movies in those years.-->
-<!--A single movie may be associated with zero, one, or multiple genres and so the 'Total Movies' line corresponds to actual-->
-<!--movie counts and every colored-in area represents the number of movies tagged with that genre for that year.-->
-<!--The clear conclusion is that there has been an explosion in film production from the 90s onward, for which I have some theories but no definitive explanation. Beyond the big takeaway there are a multitude of possible smaller conclusions regarding the relative popularity of genres and movies overall, which was really my intent in making such an open-ended visualization.-->
-        <!--<br><br>-->
+    <!--<div class="switch-field">-->
+    <!--<div class="switch-title">Display Type</div>-->
+    <!--<input type="radio" id="switch_left" name="switch" value="yes" checked/>-->
+    <!--<label for="switch_left">Counts</label>-->
+    <!--<input type="radio" id="switch_right" name="switch" value="no" />-->
+    <!--<label for="switch_right">Percents</label>-->
     <!--</div>-->
-  </body>
+    <!--</form>-->
+    <!--<div class="exposition">-->
+    <!--As you can see this chart visualizes the number of genre movie releases between 1915 and 2013, as well as the total number of movies in those years.-->
+    <!--A single movie may be associated with zero, one, or multiple genres and so the 'Total Movies' line corresponds to actual-->
+    <!--movie counts and every colored-in area represents the number of movies tagged with that genre for that year.-->
+    <!--The clear conclusion is that there has been an explosion in film production from the 90s onward, for which I have some theories but no definitive explanation. Beyond the big takeaway there are a multitude of possible smaller conclusions regarding the relative popularity of genres and movies overall, which was really my intent in making such an open-ended visualization.-->
+    <!--<br><br>-->
+    <!--</div>-->
+</body>
 </html>
