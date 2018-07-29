@@ -159,3 +159,8 @@
 	display:inline-block;
 	position:relative;
 }
+
+.intro-img {
+    margin-left: 45%;
+    height: 10%;
+}
