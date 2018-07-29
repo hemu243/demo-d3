@@ -7,6 +7,7 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script src="https://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
 
     <!-- Using full page.js for slides show-->
     <link rel="stylesheet" type="text/css" href="css/fullpage.css"/>
@@ -21,9 +22,9 @@
 </head>
 <body>
     <ul id="menu">
-	    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">Introduction</a></li>
-	    <li data-menuanchor="secondPage"><a href="#secondPage">Yearly Movies and Genre Counts</a></li>
-	    <li data-menuanchor="3rdPage"><a href="#3rdPage">Average Movie Rating</a></li>
+	    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">About</a></li>
+	    <li data-menuanchor="secondPage"><a href="#secondPage">Yearly Movies Counts</a></li>
+	    <li data-menuanchor="3rdPage"><a href="#3rdPage">Average Rating</a></li>
         <li data-menuanchor="4thPage"><a href="#4thPage">Conclusion</a></li>
     </ul>
     <div id="fullpage">
@@ -43,21 +44,13 @@
                 <h4>About IMDB</h4>
                 IMDb, an abbreviation of Internet Movie Database, is an online database of information related to world films, television programs, home videos and video games, and internet streams, including cast, production crew and personnel biographies, plot summaries, trivia, and fan reviews and ratings. An additional fan feature, message boards, was abandoned in February 2017. Originally a fan-operated website, the database is owned and operated by IMDb.com, Inc., a subsidiary of Amazon
                 <br>
-                As of December 2017, IMDb has approximately 4.7 million titles (including episodes) and 8.3 million personalities in its database,[2] as well as 83 million registered users.
+                As of December 2017, IMDb has approximately 4.7 million titles (including episodes) and 8.3 million personalities in its database, as well as 83 million registered users.
             </div>
         </div>
         <div class="section" id="section1">
             <h1 align="center">IMDB Yearly Movie And Genre Counts (1915-2013)</h1>
             <div class="exposition">
-                As you can see this chart visualizes the number of genre movie releases between 1915 and 2013, as well as
-                the total number of movies in those years.
-                A single movie may be associated with zero, one, or multiple genres and so the 'Total Movies' line
-                corresponds to actual
-                movie counts and every colored-in area represents the number of movies tagged with that genre for that year.
-                The clear conclusion is that there has been an explosion in film production from the 90s onward, for which I
-                have some theories but no definitive explanation. Beyond the big takeaway there are a multitude of possible
-                smaller conclusions regarding the relative popularity of genres and movies overall, which was really my
-                intent in making such an open-ended visualization.
+                As you can see this chart visualizes the number of genre movie releases between 1915 and 2013, as well as the total number of movies in those years. A single movie may be associated with zero, one, or multiple genres and so the 'Total Movies' line corresponds to actual movie counts and every colored-in area represents the number of movies tagged with that genre for that year. The clear conclusion is that there has been an explosion in film production from the 90s onward, for which I have some theories but no definitive explanation. Beyond the big takeaway there are a multitude of possible smaller conclusions regarding the relative popularity of genres and movies overall, which was really my intent in making such an open-ended visualization.
                 <br><br>
                 The legend is interactive (try clicking the rectangles!)
                 <br>
@@ -102,9 +95,8 @@
                 go with it was to explore various aspects of more recent data rather than
                 more aspects related to change over time. I would love to eventually add controls to view any year range for
                 all the following charts, but they still reveal some interesting aspects about modern movie production and
-                IMDB metrics. <br><br>
-                An obvious place to start is with looking at how rating data is distributed, and the answer is delightfully
-                normal :-)
+                IMDB metrics.
+                <br><br>
             </div>
 
             <div id="ratingChartContainer" class="chartContainer">
