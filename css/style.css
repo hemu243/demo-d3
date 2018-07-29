@@ -71,8 +71,8 @@
   text-align: center;
   margin: auto;
   border: 1px solid grey;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
 }
 
 .switch-field label:last-of-type {
@@ -80,8 +80,8 @@
   text-align: center;
   margin: auto;
   border: 1px solid grey;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
 }
 
 
