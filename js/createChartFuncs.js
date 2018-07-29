@@ -21,6 +21,7 @@ var createCountsChart = function(container, //html div to put this in
                            interpolate_line=false) //whether to smooth out line data
                             {
   var svg = dimple.newSvg(container, "100%", "100%");
+  svg.attr("id", "linechart_svg");
   d3.tsv(data_source, function (data) {
     console.log(data);
     var data_sum = 0;
